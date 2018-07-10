@@ -6,4 +6,5 @@
 $lang=en
 
 # Create CMS Site
-UPDATE CMSSite;uid[unique=true];name[lang=$lang];locale[lang=$lang]
+INSERT_UPDATE CMSSite;uid[unique=true];name[lang=$lang];locale[lang=$lang]
+ ;electronics;"Electronics Site";en_GB
