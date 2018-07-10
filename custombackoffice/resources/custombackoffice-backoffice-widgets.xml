@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<!--
+  ~ [y] hybris Platform
+  ~
+  ~ Copyright (c) 2000-2015 hybris AG
+  ~ All rights reserved.
+  ~
+  ~ This software is the confidential and proprietary information of hybris
+  ~ ("Confidential Information"). You shall not disclose such Confidential
+  ~ Information and shall use it only in accordance with the terms of the
+  ~ license agreement you entered into with hybris.
+  -->
+
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://www.hybris.com/schema/cockpitng/widgets.xsd">
+
+    <widget-extension widgetId="backofficeMainSlot">
+        <widget id="custombackoffice-perspective" widgetDefinitionId="com.training.hybris.widgets.custombackofficewidget"
+            template="false" slotId="perspectives" title="Hello custombackoffice">
+            <setting key="perspectiveImageUrl" value="/cng/images/perspective.png"
+                type="String" />
+        </widget>
+    </widget-extension>
+
+    <widget-connection sourceWidgetId="custombackoffice-explorer-tree" outputId="nodeSelected" targetWidgetId="custombackoffice-tree-node-adapter" inputId="input"/>
+    <widget-connection sourceWidgetId="custombackoffice-tree-node-adapter" outputId="true" targetWidgetId="custombackoffice-typecode-extractor" inputId="genericInput"/>
+    <widget-connection sourceWidgetId="custombackoffice-tree-node-adapter" outputId="true" targetWidgetId="custombackoffice-search-enabler" inputId="genericInput"/>
+    <widget-connection sourceWidgetId="custombackoffice-tree-node-adapter" outputId="false" targetWidgetId="custombackoffice-search-disabler" inputId="genericInput"/>
+    <widget-connection sourceWidgetId="custombackoffice-typecode-extractor" outputId="genericOutput" targetWidgetId="custombackoffice-search-logic" inputId="type"/>
+    <widget-connection sourceWidgetId="custombackoffice-search-enabler" outputId="genericOutput" targetWidgetId="custombackoffice-text-search" inputId="enabled"/>
+    <widget-connection sourceWidgetId="custombackoffice-search-disabler" outputId="genericOutput" targetWidgetId="custombackoffice-text-search" inputId="enabled"/>
+    <widget-connection sourceWidgetId="custombackoffice-text-search" outputId="query" targetWidgetId="custombackoffice-search-logic" inputId="searchtext"/>
+    <widget-connection sourceWidgetId="custombackoffice-search-logic" outputId="pageable" targetWidgetId="custombackoffice-simple-list" inputId="pageable"/>
+
+</widgets>
