@@ -7,4 +7,4 @@ $lang=en
 
 # Create Base Store
 INSERT_UPDATE BaseStore;uid[unique=true];name[lang=$lang]
- ;electronics;"Electronics Store"
+ ;training;"Training Store"

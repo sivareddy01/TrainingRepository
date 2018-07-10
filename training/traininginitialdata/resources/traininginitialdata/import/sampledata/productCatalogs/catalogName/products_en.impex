@@ -1,8 +1,8 @@
 # ImpEx for Importing Product Localisations
  
 # Macros / Replacement Parameter definitions
-$productCatalog=__PRODUCT_CATALOG_NAME__
-$productCatalogName=__PRODUCT_CATALOG_FULL_NAME__
+$productCatalog=trainingProductCatalog
+$productCatalogName=Training Product Catalog
 
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 
@@ -11,3 +11,18 @@ $lang=en
 
 # Update allProducts with localisations
 UPDATE Product;code[unique=true];$catalogVersion;name[lang=$lang];summary[lang=$lang];description[lang=$lang]
+;01;;sony1
+;02;;sony2
+;03;;sony3
+;04;;sony4
+;05;;sony5
+;06;;sony6
+;07;;sony7
+;08;;sony8
+;09;;sony9
+;10;;sony10
+;11;;sony11
+;12;;sony12
+;13;;sony13
+;14;;sony14
+;15;;sony15
