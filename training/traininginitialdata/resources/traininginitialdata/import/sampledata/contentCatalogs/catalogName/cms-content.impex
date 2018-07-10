@@ -1,17 +1,18 @@
 # ImpEx for Importing CMS Content
 
 # Macros / Replacement Parameter definitions
-$contentCatalog=__CONTENT_CATALOG_NAME__
-$contentCatalogName=__CONTENT_CATALOG_FULL_NAME__
-$productCatalog=__PRODUCT_CATALOG_NAME__
-$productCatalogName=__PRODUCT_CATALOG_FULL_NAME__
-
+$contentCatalog=trainingContentCatalog
+$contentCatalogName=Electronics Content Catalog
+$productCatalog=trainingProductCatalog
+$productCatalogName=Electronics Product Catalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 $productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $picture=media(code, $contentCV);
 $image=image(code, $contentCV);
 $media=media(code, $contentCV);
 $page=page(uid, $contentCV);
+$category=category(code, $productCV)
+$product=product(code, $productCV)
 $contentPage=contentPage(uid, $contentCV);
 $siteResource=jar:com.training.hybris.initialdata.setup.InitialDataSystemSetup&/traininginitialdata/import/contentCatalogs/$contentCatalog
 $productResource=jar:com.training.hybris.initialdata.setup.InitialDataSystemSetup&/traininginitialdata/import/productCatalogs/$productCatalog
