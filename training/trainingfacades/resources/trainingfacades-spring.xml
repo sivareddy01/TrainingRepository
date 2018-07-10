@@ -262,8 +262,10 @@
 	 class="com.training.hybris.facades.populators.TrainingSearchResultProductPopulator">
 	 </bean>
 	<bean parent="modifyPopulatorList">
-	<property name="list" ref="commerceSearchResultProductConverter"/>
-	<property name="add" ref="trainingSearchResultProductPopulator"/>
-	</bean>
+	<property name="list"
+		ref="commerceSearchResultProductConverter" />
+	<property name="add"
+		ref="trainingSearchResultProductPopulator" />
+</bean>
 	
 </beans>
