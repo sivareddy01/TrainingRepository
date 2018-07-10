@@ -35,4 +35,9 @@
 		<property name="alias" type="String" />
 
 	</bean>
+	
+	<bean
+		class="de.hybris.platform.commercefacades.product.data.MyProductData">
+		<property name="test" type="String" />
+	</bean>
 </beans>
