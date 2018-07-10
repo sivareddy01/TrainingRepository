@@ -2,7 +2,7 @@
 # Import the Content Catalog
 #
 $contentCatalog=trainingContentCatalog
-$languages=ja,en,de,zh
+$languages=en,de
 
 # Content catalog for CMS contents
 INSERT_UPDATE ContentCatalog;id[unique=true]

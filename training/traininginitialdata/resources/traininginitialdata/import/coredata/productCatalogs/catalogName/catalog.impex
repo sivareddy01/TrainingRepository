@@ -3,9 +3,9 @@
 #
 
 $productCatalog=trainingProductCatalog
-$classificationCatalog=ElectronicsClassification
+$classificationCatalog=TrainingClassification
 $catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
-$languages=ja,en,de,zh
+$languages=de,en
 
 # Product catalog
 INSERT_UPDATE Catalog;id[unique=true]
