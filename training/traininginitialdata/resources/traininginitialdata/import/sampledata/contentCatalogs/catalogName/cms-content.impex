@@ -2,9 +2,9 @@
 
 # Macros / Replacement Parameter definitions
 $contentCatalog=trainingContentCatalog
-$contentCatalogName=Electronics Content Catalog
+$contentCatalogName=Training Content Catalog
 $productCatalog=trainingProductCatalog
-$productCatalogName=Electronics Product Catalog
+$productCatalogName=Training Product Catalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 $productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $picture=media(code, $contentCV);
@@ -62,6 +62,19 @@ INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];nam
 
 # CMS VariantSelector Components
 INSERT_UPDATE ProductVariantSelectorComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+
+
+
+
+
+INSERT_UPDATE TrainingProductListComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;products(code,$productCV)
+;;productListComponent;Product List;productListComponent;01,02,03,04,05,06,07,08,09,10
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+;;ProductListSlot;Training Product List;true;productListComponent
+
+
+
 
 # CMS ProductAddToCart Components
 INSERT_UPDATE ProductAddToCartComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
@@ -184,6 +197,7 @@ INSERT_UPDATE RotatingImagesComponent;$contentCV[unique=true];uid[unique=true];n
 INSERT_UPDATE ProductCarouselComponent;$contentCV[unique=true];uid[unique=true];name;products(code,$productCV);scroll(code);popup;&componentRef
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
+
 
 INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='homepage'];contentSlot(uid,$contentCV)[unique=true]
 

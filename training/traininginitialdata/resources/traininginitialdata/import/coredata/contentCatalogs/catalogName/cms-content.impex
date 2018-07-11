@@ -4,6 +4,8 @@
 $contentCatalog=trainingContentCatalog
 $contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
 
+$jarResourceCms=jar:com.training.hybris.core.setup.CoreSystemSetup&/trainingcore/import/cockpits/cmscockpit
+
 # Import config properties into impex macros
 UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
 $jarResourceCms=$config-jarResourceCmsValue
@@ -21,7 +23,7 @@ INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;fronten
 ;;SearchResultsEmptyPageTemplate;Search Results Empty Page Template;search/searchEmptyPage;ContentPage
 ;;CategoryPageTemplate;Category Page Template;category/categoryPage;CategoryPage
 ;;LandingPage1Template;Landing Page 1 Template;layout/landingLayout1Page;CategoryPage,ContentPage
-;;LandingPage2Template;Landing Page 2 Template;layout/landingLayout2Page;CategoryPage,ContentPage
+;;LandingPage2Template;Landing Page 2 Template;layout/homePage;CategoryPage,ContentPage
 ;;LandingPage3Template;Landing Page 3 Template;layout/landingLayout3Page;CategoryPage,ContentPage
 ;;LandingPage4Template;Landing Page 4 Template;layout/landingLayout4Page;CategoryPage,ContentPage
 ;;LandingPage5Template;Landing Page 5 Template;layout/landingLayout5Page;CategoryPage,ContentPage
@@ -40,29 +42,29 @@ INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;fronten
 
 # Add Velocity templates that are in the CMS Cockpit. These give a better layout for editing pages
 # The FileLoaderValueTranslator loads a File into a String property. The templates could also be inserted in-line in this file.
-UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
-;;ProductDetailsPageTemplate;$jarResourceCms/structure-view/structure_productDetails2PageTemplate.vm
-;;ProductListPageTemplate   ;$jarResourceCms/structure-view/structure_productListPageTemplate.vm
-;;ProductGridPageTemplate   ;$jarResourceCms/structure-view/structure_productGridPageTemplate.vm
-;;CategoryPageTemplate      ;$jarResourceCms/structure-view/structure_categoryPageTemplate.vm
-;;LandingPage1Template      ;$jarResourceCms/structure-view/structure_landingPage1Template.vm
-;;LandingPage2Template      ;$jarResourceCms/structure-view/structure_landingPage2Template.vm
-;;LandingPage3Template      ;$jarResourceCms/structure-view/structure_landingPage3Template.vm
-;;LandingPage4Template      ;$jarResourceCms/structure-view/structure_landingPage4Template.vm
-;;LandingPage5Template      ;$jarResourceCms/structure-view/structure_landingPage5Template.vm
-;;LandingPage6Template      ;$jarResourceCms/structure-view/structure_landingPage6Template.vm
-;;ContentPage1Template      ;$jarResourceCms/structure-view/structure_contentPage1Template.vm
-;;SearchResultsListPageTemplate ;$jarResourceCms/structure-view/structure_searchResultsPageTemplate.vm
-;;SearchResultsGridPageTemplate ;$jarResourceCms/structure-view/structure_searchResultsPageTemplate.vm
-;;CartPageTemplate 		    ;$jarResourceCms/structure-view/structure_cartPageTemplate.vm
-;;AccountPageTemplate 		;$jarResourceCms/structure-view/structure_accountPageTemplate.vm
-;;StoreFinderPageTemplate	;$jarResourceCms/structure-view/structure_storefinderSearchTemplate.vm
-;;ErrorPageTemplate			;$jarResourceCms/structure-view/structure_errorPageTemplate.vm
-;;SearchResultsEmptyPageTemplate;$jarResourceCms/structure-view/structure_errorPageTemplate.vm
-;;MultiStepCheckoutSummaryPageTemplate   ;$jarResourceCms/structure-view/structure_multiStepCheckoutSummaryPageTemplate.vm
-;;OrderConfirmationPageTemplate;$jarResourceCms/structure-view/structure_orderConfirmationPageTemplate.vm
-;;LoginPageTemplate         ;$jarResourceCms/structure-view/structure_loginPageTemplate.vm
-;;CheckoutLoginPageTemplate ;$jarResourceCms/structure-view/structure_checkoutLoginPageTemplate.vm
+#UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];velocityTemplate[translator=de.hybris.platform.commerceservices.impex.impl.FileLoaderValueTranslator]
+#;;ProductDetailsPageTemplate;$jarResourceCms/structure-view/structure_productDetails2PageTemplate.vm
+#;;ProductListPageTemplate   ;$jarResourceCms/structure-view/structure_productListPageTemplate.vm
+#;;ProductGridPageTemplate   ;$jarResourceCms/structure-view/structure_productGridPageTemplate.vm
+#;;CategoryPageTemplate      ;$jarResourceCms/structure-view/structure_categoryPageTemplate.vm
+#;;LandingPage1Template      ;$jarResourceCms/structure-view/structure_landingPage1Template.vm
+#;;LandingPage2Template      ;$jarResourceCms/structure-view/structure_landingPage2Template.vm
+#;;LandingPage3Template      ;$jarResourceCms/structure-view/structure_landingPage3Template.vm
+#;;LandingPage4Template      ;$jarResourceCms/structure-view/structure_landingPage4Template.vm
+#;;LandingPage5Template      ;$jarResourceCms/structure-view/structure_landingPage5Template.vm
+#;;LandingPage6Template      ;$jarResourceCms/structure-view/structure_landingPage6Template.vm
+#;;ContentPage1Template      ;$jarResourceCms/structure-view/structure_contentPage1Template.vm
+#;;SearchResultsListPageTemplate ;$jarResourceCms/structure-view/structure_searchResultsPageTemplate.vm
+#;;SearchResultsGridPageTemplate ;$jarResourceCms/structure-view/structure_searchResultsPageTemplate.vm
+#;;CartPageTemplate 		    ;$jarResourceCms/structure-view/structure_cartPageTemplate.vm
+#;;AccountPageTemplate 		;$jarResourceCms/structure-view/structure_accountPageTemplate.vm
+#;;StoreFinderPageTemplate	;$jarResourceCms/structure-view/structure_storefinderSearchTemplate.vm
+#;;ErrorPageTemplate			;$jarResourceCms/structure-view/structure_errorPageTemplate.vm
+#;;SearchResultsEmptyPageTemplate;$jarResourceCms/structure-view/structure_errorPageTemplate.vm
+#;;MultiStepCheckoutSummaryPageTemplate   ;$jarResourceCms/structure-view/structure_multiStepCheckoutSummaryPageTemplate.vm
+#;;OrderConfirmationPageTemplate;$jarResourceCms/structure-view/structure_orderConfirmationPageTemplate.vm
+#;;LoginPageTemplate         ;$jarResourceCms/structure-view/structure_loginPageTemplate.vm
+#;;CheckoutLoginPageTemplate ;$jarResourceCms/structure-view/structure_checkoutLoginPageTemplate.vm
 
 # Create ContentSlotNames
 # Each PageTemplate has a number of ContentSlotNames, with a list of valid components for the slot.
@@ -805,3 +807,8 @@ INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterT
 ;;productList;Product List;ProductListPageTemplate;true;
 ;;productGrid;Product Grid;ProductGridPageTemplate;false;
 ;;category;Default Category Page;CategoryPageTemplate;false;
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true];contentSlot(uid,$contentCV)[unique=true];
+;;HomePage-ProductListPage;Section1;homepage;ProductListSlot
+
+

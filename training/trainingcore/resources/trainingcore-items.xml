@@ -14,6 +14,8 @@
 		<collectiontype code="SwatchColorSet"
 			elementtype="SwatchColorEnum" autocreate="true" generate="true"
 			type="set" />
+	<!-- 	<collectiontype elementtype="Product"
+			code="ProductCollection" autocreate="true" generate="true" type="set" /> -->
 	</collectiontypes>
 
 
@@ -135,27 +137,42 @@
 			<itemtype code="Product" extends="Product" generate="false"
 				autocreate="false">
 				<attributes>
-					<attribute type="DeliveryTypeEnum"	qualifier="deliveryType">
-						<persistence type="property"/>
+					<attribute type="DeliveryTypeEnum"
+						qualifier="deliveryType">
+						<persistence type="property" />
 						<modifiers optional="false" />
 						<defaultvalue>em().getEnumerationValue("DeliveryTypeEnum","Standard")</defaultvalue>
 					</attribute>
-					<attribute autocreate="true" qualifier="alias" type="java.lang.String"
-                            generate="true">
-                            <persistence type="property" />
-                            <modifiers read="true" write="true" search="true"
-                                initial="true" optional="true" unique="false" />
-                        </attribute>
+					<attribute autocreate="true" qualifier="alias"
+						type="java.lang.String" generate="true">
+						<persistence type="property" />
+						<modifiers read="true" write="true" search="true"
+							initial="true" optional="true" unique="false" />
+					</attribute>
 				</attributes>
 			</itemtype>
-			
-			<itemtype code="MyProduct" extends="Product" generate="true" autocreate="true">
+
+			<itemtype code="MyProduct" extends="Product" generate="true"
+				autocreate="true">
 				<attributes>
-					<attribute type="java.lang.String"	qualifier="test">
-						<persistence type="property" qualifier="sampletest"/>
+					<attribute type="java.lang.String" qualifier="test">
+						<persistence type="property" qualifier="sampletest" />
 						<modifiers optional="true" />
 					</attribute>
 				</attributes>
+			</itemtype>
+			<itemtype code="TrainingProductListComponent" jaloclass="com.training.core.jalo.components.TrainingProductListComponent"
+				generate="true" autocreate="true" extends="SimpleCmsComponent">
+				<attributes>
+					<!-- <attribute type="String" qualifier="name">
+						<persistence type="property" qualifier="peru"></persistence>
+					</attribute> -->
+					<attribute type="ProductCollection" qualifier="products">
+						<persistence type="property"></persistence>
+					</attribute>
+
+				</attributes>
+
 			</itemtype>
 		</typegroup>
 
