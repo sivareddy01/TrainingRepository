@@ -5,7 +5,10 @@
 hiii<br>
 <c:forEach items="${component.products}" var="product">
 ${product.name}<br>
-${product.picture}<br>
+
+
+				<img title="${headline}" alt="${product.picture.altText}" src="${product.picture.url}"></br>
+
 	<c:forEach items="${product.europe1Prices}" var="price">
 		${price.price}
 	</c:forEach>
