@@ -1,0 +1,28 @@
+# ImpEx for Importing Products
+
+# Macros / Replacement Parameter definitions
+$productCatalog=trainingProductCatalog
+$productCatalogName=Training Product Catalog
+$picture=media(code, $contentCV);
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$supercategories=supercategories(code, $catalogVersion)
+$baseProduct=baseProduct(code,$catalogVersion)
+$approved=approvalstatus(code)[default='check']
+
+# Insert Products
+INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;manufacturerAID;unit(code);ean;variantType(code);$catalogVersion;$approved;$picture;
+;01;;sony1;sony;pieces;01ean;;;approved;
+;02;;sony2;sony;pieces;01ean;;;approved;
+;03;;sony3;sony;pieces;01ean;;;approved;
+;04;;sony4;sony;pieces;01ean;;;approved;
+;05;;sony5;sony;pieces;01ean;;;approved;
+;06;;sony6;sony;pieces;01ean;;;approved;
+;07;;sony7;sony;pieces;01ean;;;approved;
+;08;;sony8;sony;pieces;01ean;;;approved;
+;09;;sony9;sony;pieces;01ean;;;approved;
+;10;;sony10;sony;pieces;01ean;;;approved;
+;11;;sony11;sony;pieces;01ean;;;approved;
+;12;;sony12;sony;pieces;01ean;;;approved;
+;13;;sony13;sony;pieces;01ean;;;approved;
+;14;;sony14;sony;pieces;01ean;;;approved;
+;15;;sony15;sony;pieces;01ean;;;approved;
