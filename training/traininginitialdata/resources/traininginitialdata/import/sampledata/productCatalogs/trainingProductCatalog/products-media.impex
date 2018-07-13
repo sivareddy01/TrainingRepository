@@ -1,0 +1,35 @@
+# ImPex for Importing Product Media
+
+# Macros / Replacement Parameter definitions
+$productCatalog=trainingProductCatalog
+
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$media=@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator]
+$thumbnail=thumbnail(code, $catalogVersion)
+$picture=picture(code, $catalogVersion)
+$thumbnails=thumbnails(code, $catalogVersion)
+$detail=detail(code, $catalogVersion)
+$normal=normal(code, $catalogVersion)
+$others=others(code, $catalogVersion)
+$data_sheet=data_sheet(code, $catalogVersion)
+$medias=medias(code, $catalogVersion)
+$galleryImages=galleryImages(qualifier, $catalogVersion)
+$siteResource=jar:com.training.hybris.initialdata.setup.InitialDataSystemSetup&/traininginitialdata/import/sampledata/productCatalogs/$productCatalog
+
+# Create Media
+Media;code[unique=true];$media;mime[default='image/jpg'];$catalogVersion;folder(qualifier)
+;index.jpg;$siteResource/images/index.jpg;;;images
+;index1.jpg;$siteResource/images/index1.jpg;;;images
+;index2.jpg;$siteResource/images/index2.jpg;;;images
+;index3.jpg;$siteResource/images/index3.jpg;;;images
+;index4.jpg;$siteResource/images/index4.jpg;;;images
+;index5.jpg;$siteResource/images/index5.jpg;;;images
+;index6.jpg;$siteResource/images/index6.jpg;;;images
+;index7.jpg;$siteResource/images/index7.jpg;;;images
+;index8.jpg;$siteResource/images/index8.jpg;;;images
+;index9.jpg;$siteResource/images/index9.jpg;;;images
+# Create Media Containers
+INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion
+
+# Update Products with Media and Media Containers
+UPDATE Product;code[unique=true];$picture;$thumbnail;$detail;$others;$normal;$thumbnails;$galleryImages;$catalogVersion

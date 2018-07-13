@@ -2,9 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="cms" uri="http://hybris.com/tld/cmstags"%>
-hiii
-
-${component.products}
+hiii<br>
 <c:forEach items="${component.products}" var="product">
 ${product.name}<br>
 ${product.picture}<br>

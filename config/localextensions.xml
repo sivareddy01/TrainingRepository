@@ -1,0 +1,48 @@
+<hybrisconfig xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:noNamespaceSchemaLocation='../bin/platform/resources/schemas/extensions.xsd'>
+  <extensions>
+    <path dir='${HYBRIS_BIN_DIR}' autoload='false' />
+    <extension name='mcc' />
+    <extension name='backoffice' />
+    <extension name='commercesearchbackoffice' />
+    <extension name='commerceservicesbackoffice' />
+    <extension name='solrfacetsearchbackoffice' />
+    <extension name='solrserver' />
+	<extension name='electronicsstore' />
+  <!--   <extension name='apparelstore' /> -->
+    <extension name='captchaaddon' />
+    <extension name='liveeditaddon' />
+    <extension name='acceleratorwebservicesaddon' />
+    <extension name='commerceorgsamplesaddon' />
+    <extension name='rulebuilderbackoffice' />
+    <extension name='couponbackoffice' />
+    <extension name='droolsruleengineservices' />
+    <extension name='couponfacades' />
+    <extension name='promotionenginesamplesaddon' />
+    <!-- <extension name='assistedservicestorefront' />
+    <extension name='assistedserviceatddtests' />
+    <extension name='customerticketingaddon' /> -->
+    <extension name='customersupportbackoffice' />
+  <!--   <extension name='eventtrackingwsaddon' />
+    <extension name='eventtrackingservices' />
+    <extension name='eventtrackingpublisher' />
+    <extension name='eventtrackingmodel' />
+    <extension name='hybrisanalyticsaddon' />
+    <extension name='yprofileeventtrackingws' />
+    <extension name='yprofileeventadapter' />-->
+    <extension name='yprofileprocessadapter' /> 
+    <extension name='privacyoverlayeraddon' />
+   <!--  <extension name='yaasconfigurationbackoffice' />
+    <extension name='textfieldconfiguratortemplatebackoffice' />
+    <extension name='textfieldconfiguratortemplateaddon' /> -->
+	<extension name='trainingfulfilmentprocess'/>
+    <extension name='trainingcockpits'/>
+    <extension name='trainingcore'/>
+    <extension name='trainingfacades'/>
+    <extension name='trainingtest'/>
+    <extension name='trainingstorefront'/>
+    <extension name='traininginitialdata'/>
+	<extension name='custombackoffice'/>
+	<extension name='customaddon'/>
+	<extension name='hmc'/>
+  </extensions>
+</hybrisconfig>
