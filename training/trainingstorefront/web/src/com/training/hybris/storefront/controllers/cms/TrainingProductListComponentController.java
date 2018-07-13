@@ -66,6 +66,8 @@ public class TrainingProductListComponentController
 		model.addAttribute("product", data);
 
 		//siva committed code
+
+		//raja committed
 	}
 
 }
