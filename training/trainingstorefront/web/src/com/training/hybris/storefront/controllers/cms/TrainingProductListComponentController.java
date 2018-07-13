@@ -62,6 +62,7 @@ public class TrainingProductListComponentController
 			productData = productFacade.getProductForOptions(productModel, PRODUCT_OPTIONS);
 			data.add(productData);
 
+
 		}
 		model.addAttribute("product", data);
 
