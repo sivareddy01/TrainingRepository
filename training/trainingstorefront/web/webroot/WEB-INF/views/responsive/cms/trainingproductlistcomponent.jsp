@@ -6,11 +6,11 @@
 Name: ${product.name}<br>
 
 <a href="${product.url}">
-	<img title="${headline}" alt="${product.name}" src="${product.url}"></br>
+
+	<img title="${headline}" alt="${product.picture.altText}" src="${product.picture.url}"></br>
 </a>
 
 Price: ${product.price.formattedValue}</br>
+
 </c:forEach>
-<c:forEach items="${product.images}" var="image">
-Image:${image}
-</c:forEach>
+
