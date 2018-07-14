@@ -71,7 +71,7 @@ INSERT_UPDATE TrainingProductListComponent;$contentCV[unique=true];uid[unique=tr
 ;;productListComponent;Product List;productListComponent;01,02,03,04,05,06,07,08,09,10
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
-;;ProductListSlot;Training Product List;true;productListComponen
+;;ProductListSlot;Training Product List;true;productListComponent
 
 
 

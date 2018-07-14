@@ -10,7 +10,7 @@ $baseProduct=baseProduct(code,$catalogVersion)
 $approved=approvalstatus(code)[default='check']
 
 # Insert Products
-INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;manufacturerAID;unit(code);ean;variantType(code);$catalogVersion;$approved;$picture;
+INSERT_UPDATE Product;code[unique=true];$supercategories;manufacturerName;manufacturerAID;unit(code);ean;variantType(code);$catalogVersion;$approved;
 ;01;;sony1;sony;pieces;01ean;;;approved;
 ;02;;sony2;sony;pieces;01ean;;;approved;
 ;03;;sony3;sony;pieces;01ean;;;approved;

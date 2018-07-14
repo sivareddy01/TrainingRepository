@@ -3,7 +3,7 @@
 # Macros / Replacement Parameter definitions
 $productCatalog=trainingProductCatalog
 
-$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default=$productCatalog:Online]
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
 $media=@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator]
 $thumbnail=thumbnail(code, $catalogVersion)
 $picture=picture(code, $catalogVersion)
