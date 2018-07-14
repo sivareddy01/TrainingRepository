@@ -1,12 +1,44 @@
 # ImpEx for Importing Prices
 
 # Macros / Replacement Parameter definitions
-$productCatalog=__PRODUCT_CATALOG_NAME__
+$productCatalog=trainingProductCatalog
 
-$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default='$productCatalog:Staged']
+$catalogVersion=catalogversion(catalog(id[default=$productCatalog]),version[default='Online'])[unique=true,default='$productCatalog:Online']
 $prices=Europe1prices[translator=de.hybris.platform.europe1.jalo.impex.Europe1PricesTranslator]
 
 # Set product approval status to Approved only for those products that have prices.
 $approved=approvalstatus(code)[default='approved']
 
-UPDATE Product;code[unique=true];$prices;$approved;$catalogVersion;Europe1PriceFactory_PTG(code)
+INSERT_UPDATE Product;code[unique=true];$approved;$catalogVersion
+;01
+;02
+;03
+;04
+;05
+;06
+;07
+;08
+;09
+;10
+INSERT_UPDATE PriceRow;productId[unique=true];unit(code[unique=true,default=pieces]);currency(isocode)[unique=true];price;minqtd;unitFactor;net
+;01;pieces;USD;8,46;1;1;false
+;01;pieces;EUR;9,7;1;1;false
+;02;pieces;USD;5,46;1;1;false
+;02;pieces;EUR;6,7;1;1;false
+;03;pieces;USD;5,46;1;1;false
+;03;pieces;EUR;6,7;1;1;false
+;04;pieces;USD;4,46;1;1;false
+;04;pieces;EUR;3,7;1;1;false
+;05;pieces;USD;2,46;1;1;false
+;05;pieces;EUR;1,7;1;1;false
+;06;pieces;USD;10,46;1;1;false
+;06;pieces;EUR;9,7;1;1;false
+;07;pieces;USD;9,46;1;1;false
+;07;pieces;EUR;8,7;1;1;false
+;08;pieces;USD;8,46;1;1;false
+;08;pieces;EUR;7,7;1;1;false
+;09;pieces;USD;8,46;1;1;false
+;09;pieces;EUR;7,7;1;1;false
+;10;pieces;USD;6,46;1;1;false
+;10;pieces;EUR;5,7;1;1;false
+

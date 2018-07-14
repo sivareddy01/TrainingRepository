@@ -40,7 +40,7 @@ public class TrainingProductListComponentController
 	@Resource(name = "accProductFacade")
 	private ProductFacade productFacade;
 
-	protected static final List<ProductOption> PRODUCT_OPTIONS = Arrays.asList(ProductOption.PRICE);
+	protected static final List<ProductOption> PRODUCT_OPTIONS = Arrays.asList(ProductOption.PRICE, ProductOption.IMAGES);
 
 	/*
 	 * (non-Javadoc)

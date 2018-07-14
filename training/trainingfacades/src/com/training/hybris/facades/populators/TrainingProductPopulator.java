@@ -36,6 +36,7 @@ public class TrainingProductPopulator implements Populator<ProductModel, Product
 		{
 			final String enumerationName = enumerationService.getEnumerationName(source.getDeliveryType());
 			target.setDeliveryType(enumerationName);
+
 		}
 
 		//if source is instance of product model then populate test

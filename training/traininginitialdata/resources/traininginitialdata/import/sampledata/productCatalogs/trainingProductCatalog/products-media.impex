@@ -16,8 +16,8 @@ $medias=medias(code, $catalogVersion)
 $galleryImages=galleryImages(qualifier, $catalogVersion)
 $siteResource=jar:com.training.hybris.initialdata.setup.InitialDataSystemSetup&/traininginitialdata/import/sampledata/productCatalogs/$productCatalog
 
-# Create Media
-INSERT_UPDATE Media;code[unique=true];$media;mime[default='image/jpg'];$catalogVersion;folder(qualifier)
+
+INSERT_UPDATE Media;code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpg'];$catalogVersion;folder(qualifier)
 ;index.jpg;$siteResource/images/index.jpg;;;images
 ;index1.jpg;$siteResource/images/index1.jpg;;;images
 ;index2.jpg;$siteResource/images/index2.jpg;;;images
@@ -28,8 +28,18 @@ INSERT_UPDATE Media;code[unique=true];$media;mime[default='image/jpg'];$catalogV
 ;index7.jpg;$siteResource/images/index7.jpg;;;images
 ;index8.jpg;$siteResource/images/index8.jpg;;;images
 ;index9.jpg;$siteResource/images/index9.jpg;;;images
+
+
+INSERT_UPDATE Product;$catalogVersion;code[unique=true];$picture;
+;;01;index.jpg
+;;02;index1.jpg
+;;03;index2.jpg
+;;04;index3.jpg
+;;05;index4.jpg
+;;06;index5.jpg
+;;07;index6.jpg
+;;08;index7.jpg
+;;09;index8.jpg
+;;10;index9.jpg
 # Create Media Containers
 INSERT_UPDATE MediaContainer;qualifier[unique=true];$medias;$catalogVersion
-
-# Update Products with Media and Media Containers
-UPDATE Product;code[unique=true];$picture;$thumbnail;$detail;$others;$normal;$thumbnails;$galleryImages;$catalogVersion
