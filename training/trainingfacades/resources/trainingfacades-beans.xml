@@ -33,7 +33,7 @@
 		<property name="deliveryType" type="String" />
 		<property name="test" type="String" />
 		<property name="alias" type="String" />
-
+		<property name="picture" type="de.hybris.platform.commercefacades.product.data.ImageData"/>
 	</bean>
 	
 	<bean
