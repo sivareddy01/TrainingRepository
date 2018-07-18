@@ -1,0 +1,269 @@
+#
+# Import the CMS content for the site
+#
+$contentCatalog=trainingContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+
+$jarResourceCms=jar:com.training.hybris.core.setup.CoreSystemSetup&/trainingcore/import/cockpits/cmscockpit
+
+# Import config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+
+#cms-content-----------CORE DATA
+INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
+;;HomePageTemplate;Home Page Template;layout/homePage;
+
+
+#Home Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='HomePageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;HomePageTopPromoSection;;;logo
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;narrow
+;CustomerSupportSection;;;footer
+;NavigationBar;;;navigation
+;HomePageHeaderBannerSection;;;logo
+;RotatingImageSection;;;narrow
+;OfferSection1;;;narrow
+;OfferSection2;;;narrow
+;OfferSection3;;;narrow
+;EssentialSection;;;narrow
+;EssentialCategorySection;;;narrow
+;ThanksForVisitingSection;;;narrow
+;FooterBannerSection;;;narrow
+;SocialMediaSection;;;narrow
+;AcceptPaymentModeSection;;;narrow
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
+;;HomePageTopPromoSlot;Home Page Top PromoSlot;true
+;;SiteLogoSlot;Site Logo;true
+;;HeaderListSlot;Header List;true
+;;SearchBoxSlot;Search Box;true
+;;ShoppingBagSlot;shopping bag;true
+;;CustomerSupportSlot;Customer Support;true
+;;NavigationBarSlot;Navigation Bar;true;
+;;HomePageHeaderBannerSlot;Home Page Header;true
+;;RotatingImageSlot;Rotating Image;true
+;;OfferSlot1;Offer1;true
+;;OfferSlot2;Offer2;true
+;;OfferSlot3;Offer3;true
+;;EssentialSlot;Essential;true
+;;EssentialCategorySlot;Essntrial Category;true;
+;;ThanksForVisitingSlot;Thanks for Visiting;true
+;;FooterBannerSlot;Footer Banner;true
+;;SocialMediaSlot;Social Meadia;true
+;;AcceptPaymentModeSlot;Accept Payment modes;true
+
+
+# Bind Content Slots to Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='HomePageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite[default='true']
+;;HomePageTopPomo-HomePage;HomePageTopPromoSection;;HomePageTopPromoSlot
+;;SiteLogo-HomePage;SiteLogo;;SiteLogoSlot;
+;;HeaderList-HomePage;HeaderLinks;;HeaderListSlot;
+;;SearchBox-HomePage;SearchBox;;SearchBoxSlot;
+;;ShoppingBag-HomePage;MiniCart;;ShoppingBagSlot;
+;;CustomerSupport-HomePage;CustomerSupportSection;;CustomerSupportSlot;
+;;NavigationBar-HomePage;NavigationBar;;NavigationBarSlot;
+;;HomePageHeaderBanner-HomePage;HomePageHeaderBannerSection;;HomePageHeaderBannerSlot;
+;;RotatingImage-HomePage;RotatingImageSection;;RotatingImageSlot;
+;;Offer1-HomePage;OfferSection1;;OfferSlot1;
+;;Offer2-HomePage;OfferSection2;;OfferSlot2;
+;;Offer3-HomePage;OfferSection3;;OfferSlot3;
+;;Essential-HomePage;EssentialSection;;EssentialSlot;
+;;EssentialCategory-HomePage;EssentialCategorySection;;EssentialCategorySlot;
+;;ThanksForVisiting-HomePage;ThanksForVisitingSection;;ThanksForVisitingSlot;
+;;FooterBanner-HomePahe;FooterBannerSection;;FooterBannerSlot;
+;;SocailMedia-HomePage;SocialMediaSection;;SocialMediaSlot;
+;;AcceptPaymentMode-HomePage;AcceptPaymentModeSection;;AcceptPaymentModeSlot;
+
+# Site-wide Homepage
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='true']
+;;homepage;Homepage;HomePageTemplate;homepage
+
+
+
+#SAMPLE DATA
+
+
+# Macros / Replacement Parameter definitions
+$contentCatalog=trainingContentCatalog
+$contentCatalogName=Training Content Catalog
+$productCatalog=trainingProductCatalog
+$productCatalogName=Training Product Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$category=category(code, $productCV)
+$product=product(code, $productCV)
+$contentPage=contentPage(uid, $contentCV);
+$siteResource=jar:com.training.hybris.initialdata.setup.InitialDataSystemSetup&/traininginitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.training.hybris.initialdata.setup.InitialDataSystemSetup&/traininginitialdata/import/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.training.hybris.initialdata.setup.InitialDataSystemSetup&/traininginitialdata/import/cockpits/cmscockpit
+
+
+# Site Promotion
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpg'];altText;folder(qualifier)[default='images']
+;;promotion.jpg;$siteResource/images/promotion.jpg;;images
+;;sitelogo.jpg;$siteResource/images/sitelogo.jpg;;images
+;;TopHeaderBanner.jpg;$siteResource/images/TopHeaderBanner.jpg;;images
+
+
+# Lightbox Banner 
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;homePageTopPromoComponent;Promotion Compomnent;homePageTopPromoComponent;
+;;siteLogoComponent;Site Logo Component;siteLogoComponent;
+;;homePageHeaderBannerComponent;HomePage Header Banner Section;homePageHeaderBannerComponent
+
+#cms-content-media==============
+
+
+
+
+# Macros / Replacement Parameter definitions
+$contentCatalog=trainingContentCatalog
+
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$picture=media(code, $contentCV);
+$siteResource=jar:com.training.hybris.initialdata.setup.InitialDataSystemSetup&/traininginitialdata/import/contentCatalogs/$contentCatalog
+
+# Language
+$lang=en
+
+
+
+# Site Logo Component
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+;;homePageTopPromoComponent;promotion.jpg;
+;;siteLogoComponent;sitelogo.jpg;
+;;homePageHeaderBannerComponent;TopHeaderBanner.jpg;
+
+
+
+
+
+
+
+
+
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];name;url;&linkRef;&componentRef;target(code)[default='sameWindow']
+;;FindAStore;FIND A STORE;/store-finder;FindAStore;FindAStore;
+;;LatestCatalogue;LATEST CATALOGUE;/sales-gifts/latest-catalogues;LatestCatalogue;LatestCatalogue
+
+UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
+;;FindAStore;"FIND A STORE"
+;;LatestCatalogue ; "Latest Catalogue"
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
+;;HomePageTopPromoSlot;homePageTopPromoComponent
+;;HeaderListSlot;FindAStore,LatestCatalogue
+;;SiteLogoSlot;siteLogoComponent
+;;HomePageHeaderBannerSlot;homePageHeaderBannerComponent
+
+
+
+
+$contentCatalog=trainingContentCatalog
+$contentCatalogName=Training Content Catalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Staged])[default=$contentCatalog:Staged]
+$productCatalog=trainingProductCatalog
+$productCatalogName=Training Product Catalog
+$productCV=catalogVersion(catalog(id[default=$productCatalog]),version[default='Staged'])[unique=true,default=$productCatalog:Staged]
+$picture=media(code, $contentCV);
+$image=image(code, $contentCV);
+$media=media(code, $contentCV);
+$page=page(uid, $contentCV);
+$contentPage=contentPage(uid, $contentCV);
+$product=product(code, $productCV)
+$category=category(code, $productCV)
+$siteResource=jar:com.training.hybris.initialdata.setup.InitialDataSystemSetup&/traininginitialdata/import/sampledata/contentCatalogs/$contentCatalog
+$productResource=jar:com.training.hybris.initialdata.setup.InitialDataSystemSetup&/traininginitialdata/import/productCatalogs/$productCatalog
+$jarResourceCms=jar:com.training.hybris.initialdata.setup.InitialDataSystemSetup&/traininginitialdata/import/cockpits/cmscockpit
+# Language
+$lang=en
+
+INSERT_UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang];url;&linkRef;&componentRef;target(code)[default='sameWindow']
+;;BedroomBarLink;"BedRoom";/store-finder;BedroomBarLink;BedroomBarLink;
+;;BathroomBarLink;"BathRoom";/store-finder;BathroomBarLink;BathroomBarLink
+;;LivingBarLink;"Living";/store-finder;LivingBarLink;LivingBarLink
+;;LookBookBarLink;"LookBook";/look-book;LookBookBarLink;LookBookBarLink
+;;InspirationBarLink;"Inspiration";/inspiration;InspirationBarLink;InspirationBarLink
+;;KidsBarLink;"Kids";/store-finder;KidsBarLink;KidsBarLink
+;;BlanketLink;"Blankets";/blankets;BlanketLink;BlanketLink
+;;PillowLink;"Pillows";/pillow;PillowLink;PillowLink
+;;HomepageNavLink;Home Page Nav Link;/;HomepageNavLink;HomepageNavLink;;;;
+;;MirrorsLink;"Mirrors";/mirrors;MirrorsLink;MirrorsLink
+;;FurnitureLink;"Furniture";/furniture;FurnitureLink;FurnitureLink
+;;HotelAtHomeLink;"Hotel At Home";/hotelathome;HotelAtHomeLink;HotelAtHomeLink
+;;CoastalCalmLink;"Coastal Calm";/coastalcalm;CoastalCalmLink;CoastalCalmLink
+;;FaceBookLink;"Facebook";/fb;FaceBookLink;FaceBookLink
+;;InstagramLink;"Instagram";/instagram;InstagramLink;InstagramLink
+
+INSERT_UPDATE BreadcrumbComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;breadcrumbComponent;Breadcrumb CMS Component;breadcrumbComponent
+
+# Navigation Bar Component
+INSERT_UPDATE NavigationBarComponent;$contentCV[unique=true];uid[unique=true];name;wrapAfter;link(uid, $contentCV);styleClass;&componentRef
+;;BedroomBarComponent;BedRoom Bar Component;10;BedroomBarLink;;BedroomBarComponent
+;;BathroomBarComponent;BathRoom Bar Com	ponent;10;BathroomBarLink;;BathroomBarComponent
+;;LivingBarComponent;Living Bar Component;10;LivingBarLink;;LivingBarComponent
+;;KidsBarComponent;Kids Bar Component;10;KidsBarLink;;KidsBarComponent
+;;LookBookBarComponent;Look Book Bar Component;10;LookBookBarLink;;LookBookBarComponent
+;;InspirationBarComponent;Inspiration Bar Component;10;InspirationBarLink;;InspirationBarComponent
+
+# CMS Navigation Nodes #
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;children(uid,$contentCV)[mode=append]
+;root;;root;;
+
+
+
+# CMS Navigation Nodes
+INSERT_UPDATE CMSNavigationNode;uid[unique=true];$contentCV[unique=true];name;parent(uid, $contentCV);links(&linkRef);&nodeRef
+;SiteRootNode;;SiteRootNode;root;;SiteRootNode
+;TrainingNavNode;;Training Node;SiteRootNode;HomepageNavLink;TrainingNavNode
+;BedroomRootNavNode;;Bedroom Root NavNode;TrainingNavNode;BedroomBarLink;BedroomRootNavNode
+;BedroomNavNode;;Bedroom NavNode;BedroomRootNavNode;BlanketLink,PillowLink;BedroomNavNode
+;BathroomRootNavNode;;Bathroom Root NavNode;TrainingNavNode;;BathroomRootNavNode
+;BathroomNavNode;;Bathroom Nav Node;BathroomRootNavNode;BlanketLink,PillowLink;BathroomNavNode
+;LivingRootNavNode;;Living Root NavNode;TrainingNavNode;;LivingRootNavNode
+;LivingNavNode;;Living Nav Node;LivingRootNavNode;MirrorsLink,FurnitureLink;LivingNavNode
+;KidsNavNode;;Kids Nav Node;TrainingNavNode;;KidsNavNode
+;LookBookNavNode;;LookBook Nav Node;TrainingNavNode;;LookBookNavNode
+;InspirationNavNode;;Inspiration Links;TrainingNavNode;;InspirationNavNode
+;TrendingLinksNavNode;;Trending Links;InspirationNavNode;HotelAtHomeLink,CoastalCalmLink;TrendingLinksNavNode
+;SharingLinkNavNode;;Sharing Links;InspirationNavNode;FaceBookLink,InstagramLink;SharingLinkNavNode
+
+
+
+
+# Navigation Bar Component
+INSERT_UPDATE NavigationBarComponent;$contentCV[unique=true];uid[unique=true];navigationNode(&nodeRef);dropDownLayout(code)
+;;BedroomBarComponent;BedroomRootNavNode
+;;BathroomBarComponent;BathroomRootNavNode
+;;LivingBarComponent;LivingRootNavNode
+;;KidsBarComponent;KidsNavNode
+;;LookBookBarComponent;LookBookNavNode
+;;InspirationBarComponent;InspirationNavNode;AUTO
+
+# Navigation Bar Component
+INSERT_UPDATE NavigationBarCollectionComponent;$contentCV[unique=true];uid[unique=true];name;components(uid, $contentCV);&componentRef
+;;TrainingNavBarComponent;Navigation Bar Collection Component;BedroomBarComponent,BathroomBarComponent,LivingBarComponent,KidsBarComponent,LookBookBarComponent,InspirationBarComponent;TrainingNavBarComponent
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
+;;NavigationBarSlot;TrainingNavBarComponent,breadcrumbComponent
+
+
+
+
+
+
+
+
+

@@ -14,7 +14,7 @@ $page=page(uid, $contentCV);
 $category=category(code, $productCV)
 $product=product(code, $productCV)
 $contentPage=contentPage(uid, $contentCV);
-$siteResource=jar:com.training.hybris.initialdata.setup.InitialDataSystemSetup&/traininginitialdata/import/contentCatalogs/$contentCatalog
+$siteResource=jar:com.training.hybris.initialdata.setup.InitialDataSystemSetup&/traininginitialdata/import/sampledata/contentCatalogs/$contentCatalog
 $productResource=jar:com.training.hybris.initialdata.setup.InitialDataSystemSetup&/traininginitialdata/import/productCatalogs/$productCatalog
 $jarResourceCms=jar:com.training.hybris.initialdata.setup.InitialDataSystemSetup&/traininginitialdata/import/cockpits/cmscockpit
 
@@ -64,14 +64,29 @@ INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];nam
 INSERT_UPDATE ProductVariantSelectorComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
 
 
+# Site Promotion
+INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator];mime[default='image/jpg'];altText;folder(qualifier)[default='images']
+;;promotion.jpg;$siteResource/images/promotion.jpg;;images
 
-
+# Lightbox Banner 
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;urlLink
+;;promotionComponent;Promotion Compomnent;promotionComponent;
 
 INSERT_UPDATE TrainingProductListComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef;products(code,$productCV)
 ;;productListComponent;Product List;productListComponent;01,02,03,04,05,06,07,08,09,10
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active;cmsComponents(&componentRef)
 ;;ProductListSlot;Training Product List;true;productListComponent
+
+
+
+
+
+
+
+
+
+
 
 
 
