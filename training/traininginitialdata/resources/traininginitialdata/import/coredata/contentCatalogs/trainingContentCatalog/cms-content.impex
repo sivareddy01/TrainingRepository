@@ -31,6 +31,7 @@ INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;fronten
 ;;ContentPage1Template;Content Page 1 Template;layout/contentLayout1Page;ContentPage
 ;;AccountPageTemplate;Account Page Template;account/accountLayoutPage;ContentPage;false;
 ;;StoreFinderPageTemplate;Store Finder Page Template;storeFinder/storeFinderSearchPage;ContentPage;false;
+;;HomePageTemplate;Home Page Template;layout/homePage.jsp;
 
 # Templates without a frontendTemplateName
 ;;CartPageTemplate;Cart Page Template;;ContentPage;false;
@@ -433,41 +434,86 @@ INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=
 ;BottomHeaderSlot;;;wide
 ;PlaceholderContentSlot;;;
 
-# Create Content Slots
+
+
+
+
+
+
+
+
+
+
+#Home Page Template
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='HomePageTemplate'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogoSection;;;logo
+;HeaderListSection;;;headerlinks
+;SearchBoxSection;;;searchbox
+;ShoppingBagSection;;;shoppingbag
+;CustomerSupportSection;;;customersupport
+;NavigationBarSection;;;navigation
+;HomePageHeaderBannerSection;;;homepagebanner
+;RotatingImageSection;;;rotatingimage
+;OfferSection1;;;offer1
+;OfferSection2;;;offer2
+;OfferSection3;;;offer3
+;EssentialSection;;;essential
+;EssentialCategorySection;;;essentialcategory
+;ThanksForVisitingSection;;;thankforvisiting
+;FooterBannerSection;;;footer
+;SocialMediaSection;;;socialmedia
+;AcceptPaymentModeSection;;;payment
+
+
+
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
-;;SiteLogoSlot;Default Site Logo Slot;true
-;;HomepageNavLinkSlot;Default Homepage Link;true
-;;MiniCartSlot;Mini Cart;true
-;;NavigationBarSlot;Navigation Bar;true
-;;TabsSlot;Tabs;true
-;;TopContentSlot;Top Content;true
-;;SideContentSlot;Side Content;true
-;;BottomContentSlot;Bottom Content;true
-;;FeatureContentSlot;Feature Content;true
-;;FooterSlot;Footer;true
-;;HeaderLinksSlot;Header links;true
+;;SiteLogoSlot;Site Logo;true
+;;HeaderListSlot;Header List;true
 ;;SearchBoxSlot;Search Box;true
-;;VariantSelectorSlot;Variant Selector;true
-;;AddToCartSlot;Add To Cart;true
-;;UpSellingSlot;Up Selling;true
-;;CrossSellingSlot;Cross Selling;true
-;;TopHeaderSlot;Top Header;true
-;;BottomHeaderSlot;Bottom Header;true
-;;ProductLeftRefinements;Refinements;true
-;;ProductGridSlot;Product List;true
-;;ProductListSlot;Product Grid;true
-;;SearchResultsListSlot;Search Result List;true
-;;SearchResultsGridSlot;Search Result Grid;true
-;;MiddleContentSlot;Middle Content Slot;true
-;;LeftContentSlot;Left Content Slot;true
-;;RightContentSlot;Right Content Slot;true
-;;CenterContentSlot;Center Content Slot;true
-;;CenterLeftContentSlot;Center Left Content Slot;true
-;;CenterRightContentSlot;Center Right Content Slot;true
-;;EmptyCartMiddleContent;Empty CartMiddle Content Slot;true
-;;PlaceholderContentSlot;Placeholder for Addon tag files;true
+;;ShoppingBagSlot;shopping bag;true
+;;CustomerSupportSlot;Customer Support;true
+;;NavigationBarSlot;Navigation Bar;true;
+;;HomePageHeaderBannerSlot;Home Page Header;true
+;;RotatingImageSlot;Rotating Image;true
+;;OfferSlot1;Offer1;true
+;;OfferSlot2;Offer2;true
+;;OfferSlot3;Offer;true
+;;EssentialSlot;Essential;true
+;;EssentialCategorySlot;Essntrial Category;true;
+;;ThanksForVisitingSlot;Thanks for Visiting;true
+;;FooterBannerSlot;Footer Banner;true
+;;SocialMediaSlot;;Social Meadia;true
+;;AcceptPaymentModeSlot;Accept Payment modes;true
 
 # Bind Content Slots to Page Templates
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='HomePageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite[default='true']
+;;SiteLogo-HomePage;SiteLogoSection;;SiteLogoSlot;;
+;;HeaderList-HomePage;HeaderListSection;;HeaderListSlot;;
+;;SearchBox-HomePage;SearchBoxSection;SearchBoxSlot;;
+;;ShoppingBag-HomePage;ShoppingBagSection;ShoppingBagSlot;;
+;;CustomerSupport-HomePage;CustomerSupportSection;CustomerSupportSlot;;
+;;NavigationBar-HomePage;NavigationBarSection;NavigationBarSlot;;
+;;HomePageHeaderBanner-HomePage;HomePageHeaderBannerSection;HomePageHeaderBannerSlot;;
+;;RotatingImage-HomePage;RotatingImageSection;RotatingImageSlot;;
+;;Offer-HomePage;OfferSection1;OfferSlot1;;
+;;Offer-HomePage;OfferSection2;OfferSlot2;;
+;;Offer-HomePage;OfferSection3;OfferSlot3;;
+;;Essential-HomePage;EssentialSection;EssentialSlot;;
+;;EssentialCategory-HomePage;EssentialCategorySection;EssentialCategorySlot;;
+;;ThanksForVisiting-HomePage;ThanksForVisitingSection;ThanksForVisitingSlot;;
+;;FooterBanner-HomePahe;FooterBannerSection;FooterBannerSlot;;
+;;SocailMedia-HomePage;SocialMediaSection;SocialMediaSlot;;
+;;AcceptPaymentMode-HomePage;AcceptPaymentModeSection;AcceptPaymentModeSlot;;
+
+
+
+
+
+
+
+
+
+
 INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ProductDetailsPageTemplate'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
 ;;SiteLogo-ProductDetails;SiteLogo;;SiteLogoSlot;true
 ;;HomepageLink-ProductDetails;HomepageNavLink;;HomepageNavLinkSlot;true
@@ -760,7 +806,7 @@ INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];po
 
 # Site-wide Homepage
 INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='true']
-;;homepage;Homepage;LandingPage2Template;homepage
+;;homepage;Homepage;HomePageTemplate;homepage
 
 # Preview Image for use in the CMS Cockpit for special ContentPages
 INSERT_UPDATE Media;$contentCV[unique=true];code[unique=true];mime;realfilename;@media[translator=de.hybris.platform.impex.jalo.media.MediaDataTranslator][forceWrite=true]
@@ -811,4 +857,38 @@ INSERT_UPDATE CategoryPage;$contentCV[unique=true];uid[unique=true];name;masterT
 INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true];contentSlot(uid,$contentCV)[unique=true];
 ;;HomePage-ProductListPage;Section1;homepage;ProductListSlot
 
+
+# Create Content Slots
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
+;;SiteLogoSlot;Default Site Logo Slot;true
+;;HomepageNavLinkSlot;Default Homepage Link;true
+;;MiniCartSlot;Mini Cart;true
+;;NavigationBarSlot;Navigation Bar;true
+;;TabsSlot;Tabs;true
+;;TopContentSlot;Top Content;true
+;;SideContentSlot;Side Content;true
+;;BottomContentSlot;Bottom Content;true
+;;FeatureContentSlot;Feature Content;true
+;;FooterSlot;Footer;true
+;;HeaderLinksSlot;Header links;true
+;;SearchBoxSlot;Search Box;true
+;;VariantSelectorSlot;Variant Selector;true
+;;AddToCartSlot;Add To Cart;true
+;;UpSellingSlot;Up Selling;true
+;;CrossSellingSlot;Cross Selling;true
+;;TopHeaderSlot;Top Header;true
+;;BottomHeaderSlot;Bottom Header;true
+;;ProductLeftRefinements;Refinements;true
+;;ProductGridSlot;Product List;true
+;;ProductListSlot;Product Grid;true
+;;SearchResultsListSlot;Search Result List;true
+;;SearchResultsGridSlot;Search Result Grid;true
+;;MiddleContentSlot;Middle Content Slot;true
+;;LeftContentSlot;Left Content Slot;true
+;;RightContentSlot;Right Content Slot;true
+;;CenterContentSlot;Center Content Slot;true
+;;CenterLeftContentSlot;Center Left Content Slot;true
+;;CenterRightContentSlot;Center Right Content Slot;true
+;;EmptyCartMiddleContent;Empty CartMiddle Content Slot;true
+;;PlaceholderContentSlot;Placeholder for Addon tag files;true
 

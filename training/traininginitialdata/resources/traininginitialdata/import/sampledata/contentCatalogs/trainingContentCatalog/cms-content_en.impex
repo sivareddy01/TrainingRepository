@@ -12,7 +12,8 @@ $siteResource=jar:com.training.hybris.initialdata.setup.InitialDataSystemSetup&/
 $lang=en
 
 # Site Logo Component
-UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang]
+;;SiteLogoComponent;promotion.jpg;
 
 # CMS Link Components
 UPDATE CMSLinkComponent;$contentCV[unique=true];uid[unique=true];linkName[lang=$lang]
