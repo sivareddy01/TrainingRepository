@@ -1,0 +1,152 @@
+#
+# Import the CMS content for the site
+#
+$contentCatalog=trainingContentCatalog
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+
+$jarResourceCms=jar:com.training.hybris.core.setup.CoreSystemSetup&/trainingcore/import/cockpits/cmscockpit
+
+# Import config properties into impex macros
+UPDATE GenericItem[processor=de.hybris.platform.commerceservices.impex.impl.ConfigPropertyImportProcessor];pk[unique=true]
+$jarResourceCms=$config-jarResourceCmsValue
+
+#cms-content-----------CORE DATA
+
+
+
+INSERT_UPDATE PageTemplate;$contentCV[unique=true];uid[unique=true];name;frontendTemplateName;restrictedPageTypes(code);active[default=true]
+;;ContentPage1Template;Content Page 1 Template;layout/contentLayout1Page;ContentPage
+
+
+# Site-wide Homepage
+INSERT_UPDATE ContentPage;$contentCV[unique=true];uid[unique=true];name;masterTemplate(uid,$contentCV);label;defaultPage[default='true'];approvalStatus(code)[default='approved'];homepage[default='true']
+;;aboutUs;AboutUs;ContentPage1Template;/aboutUs;false
+;;apologies;Apologies;ContentPage1Template;/apologies;false
+
+# Simple Content Page Templates
+INSERT_UPDATE ContentSlotName;name[unique=true];template(uid,$contentCV)[unique=true][default='ContentPage1Template'];validComponentTypes(code);compTypeGroup(code)
+;SiteLogo;;;logo
+;HeaderLinks;;;headerlinks
+;SearchBox;;;searchbox
+;MiniCart;;;minicart
+;NavigationBar;;;navigation
+;Section1;;;wide
+;Section2A;;;narrow
+;Section2B;;;wide
+;Section3;;;wide
+;Footer;;;footer
+;TopHeaderSlot;;;wide
+;BottomHeaderSlot;;;wide
+;PlaceholderContentSlot;;;
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];name;active
+;;HomePageTopPromoSlot;Home Page Top PromoSlot;true
+;;SiteLogoSlot;Site Logo;true
+;;HeaderListSlot;Header List;true
+;;SearchBoxSlot;Search Box;true
+;;ShoppingBagSlot;shopping bag;true
+;;CustomerSupportSlot;Customer Support;true
+;;NavigationBarSlot;Navigation Bar;true;
+;;HomePageHeaderBannerSlot;Home Page Header;true
+;;RotatingImageSlot;Rotating Image;true
+;;OfferSlot1;Offer1;true
+;;OfferSlot2;Offer2;true
+;;OfferSlot3;Offer3;true
+;;EssentialSlot;Essential;true
+;;EssentialCategorySlot;Essntrial Category;true;
+;;ThanksForVisitingSlot;Thanks for Visiting;true
+;;FooterBannerSlot;Footer Banner;true
+;;SocialMediaSlot;Social Meadia;true
+;;AcceptPaymentModeSlot;Accept Payment modes;true
+;;AboutUsSlot;About Us;true
+;;HomepageNavLinkSlot;HomepageNavLinkSlot;true
+;;MiniCartSlot;MiniCartSlot;true
+;;FooterSlot;FooterSlot;true
+;;HeaderLinksSlot;HeaderLinksSlot;true
+;;SearchBoxSlot;SearchBoxSlot;true
+;;TopHeaderSlot;TopHeaderSlot;true
+;;BottomHeaderSlot;BottomHeaderSlot;true
+;;PlaceholderContentSlot;PlaceholderContentSlot;true
+;;Section1Slot-apologies;Section1 apologies;true;
+;;Section2ASlot-aboutUs;Section2a aboutUs;true;
+;;Section3Slot-aboutUs;aboutUs;true
+
+INSERT_UPDATE ContentSlotForTemplate;$contentCV[unique=true];uid[unique=true];position[unique=true];pageTemplate(uid,$contentCV)[unique=true][default='ContentPage1Template'];contentSlot(uid,$contentCV)[unique=true];allowOverwrite
+;;SiteLogo-ContentPage1;SiteLogo;;SiteLogoSlot;true
+;;HomepageLink-ContentPage1;HomepageNavLink;;HomepageNavLinkSlot;true
+;;NavigationBar-ContentPage1;NavigationBar;;NavigationBarSlot;true
+;;MiniCart-ContentPage1;MiniCart;;MiniCartSlot;true
+;;Footer-ContentPage1;Footer;;FooterSlot;true
+;;HeaderLinks-ContentPage1;HeaderLinks;;HeaderLinksSlot;true
+;;SearchBox-ContentPage1;SearchBox;;SearchBoxSlot;true
+;;TopHeaderSlot-ContentPage1;TopHeaderSlot;;TopHeaderSlot;true
+;;BottomHeaderSlot-ContentPage1;BottomHeaderSlot;;BottomHeaderSlot;true
+;;PlaceholderContentSlot-ContentPage1;PlaceholderContentSlot;;PlaceholderContentSlot;true
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='aboutUs'];contentSlot(uid,$contentCV)[unique=true]
+#;;section1-contentpage1;Section1;;Section1Slot-aboutUs
+;;Section2A-contentpage1;Section2A;;Section2ASlot-aboutUs
+#;;Section3-contentpage1;Section3;;Section3Slot-aboutUs
+#;;SiteLogo1-ContentPage1;SiteLogo;;SiteLogoSlot-aboutus;true
+
+INSERT_UPDATE ContentSlotForPage;$contentCV[unique=true];uid[unique=true];position[unique=true];page(uid,$contentCV)[unique=true][default='apologies'];contentSlot(uid,$contentCV)[unique=true]
+;;section1-contentpage1;Section1;;Section1Slot-apologies
+
+
+INSERT_UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;aboutus-para1;About Us para1;aboutus-para1
+;;aboutus-para2;About Us para2;aboutus-para2
+;;apologies-para1;Apologies Para1;apologies-para1
+
+
+UPDATE CMSParagraphComponent;$contentCV[unique=true];uid[unique=true];content
+;;aboutus-para1;"<p align='center' style='mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-align:center;mso-line-height-alt:18.0pt' class='MsoNormal'><i><span lang='EN-US' style='font-size:20.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;color:gray;
+mso-ansi-language:EN-US;mso-fareast-language:EN-AU'>“To operate with integrity.&nbsp;<br> To provide our customers with service and knowledge.<br> To be the best in all we do, providing quality and innovative products for all Australian Families.<br> To cultivate beauty and creativity in our products.<br> To provide the inspiration toward a gorgeous home.”&nbsp;<br> </span></i><i><span lang='EN-US' style='font-size:12.0pt;font-family:&quot;Times New Roman&quot;,&quot;serif&quot;;
+color:gray;mso-ansi-language:EN-US;mso-fareast-language:EN-AU'>Kate Spencer, General Manager.</span></i><br><br><span style='font-size: 13.5pt; font-family: ' times='' new=''> </span></p>"
+
+;;aboutus-para2;"<span lang=""EN"" style=""font-size:10.5pt;font-family:&quot;Arial&quot;,&quot;sans-serif&quot;;color:#7D7874;
+mso-ansi-language:EN;mso-fareast-language:EN-AU"">Pillow Talk is 100% Australian owned and operated and one of the  largest home linens specialists in the country.   We started from humble beginnings with one small store in Brisbane's    Ann Street back in 1977 and have continued to grow into a well-regarded     household name that is the first port-of-call for many Australians.      Pillow Talk is an Omni-channel operator providing our customers both a      visual journey via our 59 stores around the country, as well as a convenient Online and mobile store.         <br><br>      We provide a complete range of “good, better, best”       with an emphasis on quality, style and value for our many customers.       We pride ourselves on our ability to cater for every Australian home – whether you are a        large family with young children, a first home buyer looking to make your new house a home, or just wanting to update that special space.        <br><br>        We understand that no homes are the same and dedicate ourselves to finding and creating the perfect pieces to accompany your family's memories in your own space. From historical Queenslander homes, to modern units, a beachside escape, to a Hinterland Retreat, you'll find everything you need to inspire your home in one of our many Pillow Talk stores.         <br><br>        The large store format allows the company to showcase the widest range of products for all homes, including (but definitely not limited to) sheet sets, quilt covers, quilts, blankets, bathroom ranges, table linens, cushions, coverlets and candles! All of these ranges are supported by an extensive warehousing structure and logistical management team.         <br><br>        As specialists in our industry, we carry on average over 300 different cushion designs across a myriad of colour ways and textures. We are home to more than 90 different pillows, 300-400 quilt cover designs as well as sheets in all varying qualities and thread counts – not to mention our value for money price points.        <br><br>        We understand the quality expected by our valued customers for everyday essential items and thus focus on maintaining the integrity of our products while combining them with style and flair. We place strong emphasis on colour palettes, textures and superior fabrics to create inspirational pieces that are both stylish and functional.              </span>"
+
+
+;;apologies-para1;"<div class='centerfill outer span-20'>
+	   	<div class='contentHeading'>
+				<h1>Apologies</h1>
+			</div> 
+		<div class='center left'>
+			<div class='content null'><p>&nbsp;</p><p>&nbsp;</p><p>Dear customers,</p><p>&nbsp;</p><p>Please note that on page 16 of our End of Financial Year Sale catalogue, the composition of the Whistler throws has been incorrectly labelled as wool when the correct composition is acrylic.</p><p>&nbsp;</p><p>We apologise for any inconvenience caused.</p></div></div>
+		<div class='clear'></div>
+		
+	    <div class='centerfill'>
+			<div class='clear'></div>
+	    </div>
+
+		    <div class='right'>
+			<div class='clear'></div>
+		</div>
+	 
+		<div class='clear'></div>
+	</div>"
+
+
+
+# Macros / Replacement Parameter definitions
+$contentCatalog=trainingContentCatalog
+
+$contentCV=catalogVersion(CatalogVersion.catalog(Catalog.id[default=$contentCatalog]),CatalogVersion.version[default=Online])[default=$contentCatalog:Online]
+$picture=media(code, $contentCV);
+$siteResource=jar:com.training.hybris.initialdata.setup.InitialDataSystemSetup&/traininginitialdata/import/contentCatalogs/$contentCatalog
+# Language
+$lang=en
+
+
+INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$picture[lang=$lang];&componentRef
+;;sitelogoaboutcomp;promotion.jpg;sitelogoaboutcomp
+
+
+INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
+;;Section2ASlot-aboutUs;aboutus-para1,aboutus-para2
+;;SiteLogoSlot-aboutus;sitelogoaboutcomp
+;;Section1Slot-apologies;apologies-para1
+
+
