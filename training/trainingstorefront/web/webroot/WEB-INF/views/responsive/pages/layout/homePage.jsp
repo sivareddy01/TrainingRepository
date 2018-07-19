@@ -15,5 +15,9 @@
 		<cms:component component="${feature}" element="div"
 			class="span-24 section1 cms_disp-img_slot" />
 	</cms:pageSlot>
+	<cms:pageSlot position="AboutUsSection" var="feature">
+		<cms:component component="${feature}" element="div"
+			class="span-24 section1 cms_disp-img_slot" />
+	</cms:pageSlot>
 
 </template:page>
