@@ -44,5 +44,6 @@
 	<extension name='custombackoffice'/>
 	<extension name='customaddon'/>
 	<extension name='hmc'/>
+	<extension name="trainingwebservices"/>
   </extensions>
 </hybrisconfig>

@@ -1,44 +1,145 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<!--
- [y] hybris Platform
-
- Copyright (c) 2000-2016 SAP SE or an SAP affiliate company.
- All rights reserved.
-
- This software is the confidential and proprietary information of SAP
- ("Confidential Information"). You shall not disclose such Confidential
- Information and shall use it only in accordance with the terms of the
- license agreement you entered into with SAP.
--->
+<!-- [y] hybris Platform Copyright (c) 2000-2016 SAP SE or an SAP affiliate 
+	company. All rights reserved. This software is the confidential and proprietary 
+	information of SAP ("Confidential Information"). You shall not disclose such 
+	Confidential Information and shall use it only in accordance with the terms 
+	of the license agreement you entered into with SAP. -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns="http://www.hybris.com/cockpit/config"
-        xsi:schemaLocation="http://www.hybris.com/cockpit/config 
-        http://www.hybris.com/schema/cockpitng/config/cockpit-configuration.xsd">
+	xmlns="http://www.hybris.com/cockpit/config"
+	xsi:schemaLocation="http://www.hybris.com/cockpit/config 
+        http://www.hybris.com/schema/cockpitng/config/cockpit-configuration.xsd"
+    xmlns:y="http://www.hybris.com/cockpit/config/hybris"
+    xmlns:wz="http://www.hybris.com/cockpitng/config/wizard-config"
+    xmlns:list-view="http://www.hybris.com/cockpitng/component/listView"
+    xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea"
+    xmlns:explorer-tree="http://www.hybris.com/cockpitng/config/explorertree"
+    xmlns:simple-search="http://www.hybris.com/cockpitng/config/simplesearch"
+    xmlns:advanced-search="http://www.hybris.com/cockpitng/config/advancedsearch"
+    xmlns:df="http://www.hybris.com/cockpitng/component/dynamicForms"
+	xmlns:dsb="http://www.hybris.com/cockpitng/config/dashboard">
 
-    <context component="editorareaactions" type="Consignment">
-        <bo:actions xmlns:bo="http://www.hybris.com/cockpit/config/hybris">
-            <bo:group qualifier="common">
-                <bo:label>actiongroup.common</bo:label>
-                <bo:action action-id="com.hybris.cockpitng.actions.scriptingaction" property="currentObject">
-                    <bo:parameter>
-                        <bo:name>scriptUri</bo:name>
-                        <bo:value>model://confirmPickup</bo:value>
-                    </bo:parameter>
-                    <bo:parameter>
-                        <bo:name>label</bo:name>
-                        <bo:value>Confirm pickup</bo:value>
-                    </bo:parameter>
+	<context component="editorareaactions" type="Consignment">
+		<bo:actions xmlns:bo="http://www.hybris.com/cockpit/config/hybris">
+			<bo:group qualifier="common">
+				<bo:label>actiongroup.common</bo:label>
+				<bo:action action-id="com.hybris.cockpitng.actions.scriptingaction"
+					property="currentObject">
+					<bo:parameter>
+						<bo:name>scriptUri</bo:name>
+						<bo:value>model://confirmPickup</bo:value>
+					</bo:parameter>
+					<bo:parameter>
+						<bo:name>label</bo:name>
+						<bo:value>Confirm pickup</bo:value>
+					</bo:parameter>
 					<bo:parameter>
 						<bo:name>iconUri</bo:name>
-						<bo:value>/backoffice/widgetClasspathResource/widgets/actions/pickupconfirmation/icons/icon_confirm_pickup_enabled.png</bo:value>
+						<bo:value>/backoffice/widgetClasspathResource/widgets/actions/pickupconfirmation/icons/icon_confirm_pickup_enabled.png
+						</bo:value>
 					</bo:parameter>
 					<bo:parameter>
 						<bo:name>disabledIconUri</bo:name>
-						<bo:value>/backoffice/widgetClasspathResource/widgets/actions/pickupconfirmation/icons/icon_confirm_pickup_disabled.png</bo:value>
+						<bo:value>/backoffice/widgetClasspathResource/widgets/actions/pickupconfirmation/icons/icon_confirm_pickup_disabled.png
+						</bo:value>
 					</bo:parameter>
-                </bo:action>
-            </bo:group>
-        </bo:actions>
-    </context>
- 
+				</bo:action>
+			</bo:group>
+		</bo:actions>
+	</context>
+
+	<context merge-by="module" parent="auto" component="explorer-tree">
+		<explorer-tree:explorer-tree
+			xmlns:explorer-tree="http://www.hybris.com/cockpitng/config/explorertree">
+			<explorer-tree:navigation-node id="Training">
+				<explorer-tree:type-node code="TrainingProductListComponent"
+					id="TrainingProductListComponent" />
+				<explorer-tree:type-node code="Test" id="test" />
+
+			</explorer-tree:navigation-node>
+		</explorer-tree:explorer-tree>
+	</context>
+
+	<context merge-by="type" parent="CMSItem" type="TrainingProductListComponent"
+		component="listview">
+		<list-view:list-view
+			xmlns:list-view="http://www.hybris.com/cockpitng/component/listView">
+			<list-view:column qualifier="products" />
+		</list-view:list-view>
+	</context>
+
+	<context merge-by="type" parent="SimpleCMSComponent" type="TrainingProductListComponent"
+		component="editor-area">
+		<editorArea:editorArea
+			xmlns:editorArea="http://www.hybris.com/cockpitng/component/editorArea">
+			<editorArea:tab name="hmc.products">
+				<editorArea:section name="hmc.products">
+					<editorArea:attribute
+						xmlns="http://www.hybris.com/cockpitng/component/editorArea"
+						qualifier="products" />
+				</editorArea:section>
+			</editorArea:tab>
+		</editorArea:editorArea>
+	</context>
+
+	<context merge-by="type" parent="GenericItem" type="TrainingProductListComponent"
+		component="simple-search">
+		<simple-search:simple-search
+			xmlns:simple-search="http://www.hybris.com/cockpitng/config/simplesearch">
+			<simple-search:field
+				xmlns="http://www.hybris.com/cockpitng/config/simplesearch" name="uid" />
+		</simple-search:simple-search>
+	</context>
+	<context merge-by="type" parent="GenericItem" type="Product"
+		component="advanced-search">
+		<advanced-search:advanced-search
+			xmlns:advanced-search="http://www.hybris.com/cockpitng/config/advancedsearch">
+			<advanced-search:field-list>
+				<advanced-search:field
+					xmlns="http://www.hybris.com/cockpitng/config/advancedsearch" name="deliveryType"
+					selected="false" />
+
+			</advanced-search:field-list>
+		</advanced-search:advanced-search>
+	</context>
+
+	<context type="Product" component="base" merge-by="type"
+		parent="GenericItem">
+		<y:base xmlns:y="http://www.hybris.com/cockpit/config/hybris">
+			<y:labels>
+				<y:label>code+ '/' +name+'/'+catalogVersion</y:label>
+			</y:labels>
+		</y:base>
+	</context>
+	<context component="create-wizard" type="Product">
+		<wz:flow id="ProductWizard" title="create.title(ctx.TYPE_CODE)">
+			<wz:prepare id="productPrepare">
+				<wz:initialize property="newProduct" type="ctx.TYPE_CODE" />
+				<wz:assign property="newProduct.code" value="ctx.code" />
+				<wz:assign property="newProduct.catalogVersion" value="ctx.catalogVersion" />
+			</wz:prepare>
+			<wz:step id="step1" label="create.product.essential.label"
+				sublabel="create.product.essential.sublabel">
+				<wz:content id="step1.content">
+					<wz:property-list root="newProduct">
+						<wz:property qualifier="code" type="java.lang.String" />
+						<wz:property qualifier="approvalStatus" />
+						<wz:property qualifier="catalogVersion" />
+						<wz:property qualifier="deliveryType" />
+
+					</wz:property-list>
+				</wz:content>
+				<wz:navigation id="step1.navigation">
+					<wz:cancel />
+					<wz:next
+						visible="!#empty(newProduct.code) and newProduct.catalogVersion != null" />
+					<wz:done
+						visible="!#empty(newProduct.code) and newProduct.catalogVersion != null">
+						<wz:save property="newProduct" />
+					</wz:done>
+				</wz:navigation>
+			</wz:step>
+		</wz:flow>
+	</context>
+
+
 </config>
