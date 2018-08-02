@@ -609,4 +609,25 @@
 			</list>
 		</property>
 	</bean>
+	<alias alias="customerAccountService" name="trainingCustomerAccountService"/>
+	<bean id="trainingCustomerAccountService"
+			class="com.training.hybris.core.service.TrainingCustomerAccountService" parent="defaultCustomerAccountService">
+	</bean>
+	<bean id="customerUpdateProfileEventListener"
+		class="com.training.hybris.core.event.UpdateProfileEventListener"
+		parent="abstractAcceleratorSiteEventListener">
+		<property name="modelService" ref="modelService" />
+		<property name="businessProcessService"
+			ref="businessProcessService" />
+	</bean>
+	<bean id="generateCustomerUpdateProfileEmail"
+		parent="abstractGenerateEmailAction">
+		<property name="frontendTemplateName"
+			value="CustomerUpdateProfileEmailTemplate" />
+	</bean>
+	<bean id="customerUpdateProfileEmailProcessDefsinitionResource"
+		class="de.hybris.platform.processengine.definition.ProcessDefinitionResource">
+		<property name="resource"
+			value="classpath:/trainingcore/processes/customerUpdateProfileEmailProcess.xml" />
+	</bean>
 </beans>

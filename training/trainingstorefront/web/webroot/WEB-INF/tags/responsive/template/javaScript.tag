@@ -78,6 +78,7 @@
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.savedcarts.js"></script>
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.multidgrid.js"></script>
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.quickorder.js"></script>
+		<script type="text/javascript" src="${commonResourcePath}/js/acc.register.js"></script>
 
 		<script type="text/javascript" src="${commonResourcePath}/js/acc.csv-import.js"></script>
 

@@ -145,7 +145,9 @@ INSERT_UPDATE SimpleBannerComponent;$contentCV[unique=true];uid[unique=true];$pi
 
 
 
-
+# CMS SearchBox Components
+INSERT_UPDATE SearchBoxComponent;$contentCV[unique=true];uid[unique=true];name;&componentRef
+;;SearchBox;Search Box;SearchBox
 
 
 
@@ -165,6 +167,7 @@ INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents
 ;;HeaderListSlot;FindAStore,LatestCatalogue
 ;;SiteLogoSlot;siteLogoComponent
 ;;HomePageHeaderBannerSlot;homePageHeaderBannerComponent
+;;
 
 
 
@@ -257,7 +260,10 @@ INSERT_UPDATE NavigationBarCollectionComponent;$contentCV[unique=true];uid[uniqu
 
 
 INSERT_UPDATE ContentSlot;$contentCV[unique=true];uid[unique=true];cmsComponents(&componentRef)
+;;SearchBoxSlot;SearchBox,LangCurrencyComponent
 ;;NavigationBarSlot;TrainingNavBarComponent,breadcrumbComponent
+
+
 
 
 

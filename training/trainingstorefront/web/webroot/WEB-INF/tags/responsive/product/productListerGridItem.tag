@@ -15,7 +15,7 @@
 <div class="product-item">
 	<ycommerce:testId code="product_wholeProduct">
 		<a class="thumb" href="${productUrl}" title="${product.name}">
-			<product:productPrimaryImage product="${product}" format="product"/>
+			<product:productPrimaryImage product="${product}" format="thumbnail"/>
 		</a>
 		<div class="details">
 

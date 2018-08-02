@@ -4,6 +4,6 @@
 
 <div class="register-section">
 	<c:url value="/login/register" var="registerActionUrl" />
-	<user:register actionNameKey="register.submit"
+	<user:register actionNameKey="registersubmit"
 		action="${registerActionUrl}" />
 </div>

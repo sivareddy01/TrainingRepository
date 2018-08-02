@@ -132,6 +132,11 @@
 		parent="abstractEmailContext" scope="prototype">
 		<property name="customerConverter" ref="customerConverter" />
 	</bean>
+	
+	<bean id="trainingUpdateProfileEmailContext"
+		class="com.training.hybris.facades.process.email.context.TrainingUpdateProfileEmailContext"
+		parent="customerEmailContext" scope="prototype">
+	</bean>
 
 	<bean id="forgottenPasswordEmailContext"
 		class="com.training.hybris.facades.process.email.context.ForgottenPasswordEmailContext"
@@ -216,6 +221,9 @@
 	<alias name="trainingCustomerFacade" alias="customerFacade" />
 	<bean id="trainingCustomerFacade"
 		class="com.training.hybris.facades.customer.TrainingCustomerFacade" parent="defaultCustomerFacade">
+	<property name="eventService" ref="eventService"/>
+	<property name="baseStoreService" ref="baseStoreService"/>
+	<property name="baseSiteService" ref="baseSiteService"/>
 	</bean>
 	
 	<bean id="trainingCustomerPopulator"

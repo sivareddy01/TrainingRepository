@@ -31,12 +31,16 @@ public class CustomerEmailContext extends AbstractEmailContext<StoreFrontCustome
 {
 	private Converter<UserModel, CustomerData> customerConverter;
 	private CustomerData customerData;
+	String mobileNumber;
 
 	@Override
 	public void init(final StoreFrontCustomerProcessModel storeFrontCustomerProcessModel, final EmailPageModel emailPageModel)
 	{
+
 		super.init(storeFrontCustomerProcessModel, emailPageModel);
 		customerData = getCustomerConverter().convert(getCustomer(storeFrontCustomerProcessModel));
+		put("customerData", customerData);
+
 	}
 
 	@Override

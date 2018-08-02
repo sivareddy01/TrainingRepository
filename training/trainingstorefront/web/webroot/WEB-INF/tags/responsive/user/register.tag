@@ -7,8 +7,10 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="formElement"
 	tagdir="/WEB-INF/tags/responsive/formElement"%>
+	
 <%@ taglib prefix="theme" tagdir="/WEB-INF/tags/shared/theme"%>
 <%@ taglib prefix="ycommerce" uri="http://hybris.com/tld/ycommercetags"%>
+
 
 <div class="user-register__headline">
 	<spring:theme code="register.new.customer" />
@@ -18,22 +20,29 @@
 </p>
 
 <form:form method="post" commandName="registerForm" action="${action}">
+
+
 	<formElement:formSelectBox idKey="register.title"
 		labelKey="register.title" selectCSSClass="form-control"
 		path="titleCode" mandatory="true" skipBlank="false"
 		skipBlankMessageKey="form.select.empty" items="${titles}" />
-	<formElement:formInputBox idKey="register.firstName"
+		
+		
+		
+		
+	<formElement:formInputBox idKey="registerfirstName"
 		labelKey="register.firstName" path="firstName" inputCSS="form-control"
 		mandatory="true" />
-	<formElement:formInputBox idKey="register.lastName"
+	<formElement:formInputBox idKey="registerlastName"
 		labelKey="register.lastName" path="lastName" inputCSS="form-control"
 		mandatory="true" />
-	<formElement:formInputBox idKey="register.mobileNumber"
+	<formElement:formInputBox idKey="registermobileNumber"
 		labelKey="register.mobileNumber" path="mobileNumber" mandatory="true"
 		inputCSS="true" />
-	<formElement:formInputBox idKey="register.email"
+	<formElement:formInputBox idKey="registeremail"
 		labelKey="register.email" path="email" inputCSS="form-control"
 		mandatory="true" />
+		<div id="emailError" style="color:red"></div>
 	<formElement:formPasswordBox idKey="password" labelKey="register.pwd"
 		path="pwd" inputCSS="form-control password-strength" mandatory="true" />
 	<formElement:formPasswordBox idKey="register.checkPwd"
@@ -51,3 +60,5 @@
 		</ycommerce:testId>
 	</div>
 </form:form>
+
+

@@ -45,5 +45,6 @@
 	<extension name='customaddon'/>
 	<extension name='hmc'/>
 	<extension name="trainingwebservices"/>
+	<extension name="wishlist"/>
   </extensions>
 </hybrisconfig>
